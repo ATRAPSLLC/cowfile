@@ -1,12 +1,11 @@
 [package]
 name = "cowfile"
-version = "0.2.3"
-authors = ["Johann Kempter <admin@binflip.rs>"]
+version = "0.2.4"
 edition = "2021"
 description = "A copy-on-write abstraction for binary data backed by memory or files"
 license = "Apache-2.0"
-repository = "https://github.com/BinFlip/cowfile"
-homepage = "https://github.com/BinFlip/cowfile"
+repository = "https://github.com/ATRAPSLLC/cowfile"
+homepage = "https://github.com/ATRAPSLLC/cowfile"
 documentation = "https://docs.rs/cowfile"
 keywords = ["binary", "overlay", "copy-on-write", "patching", "file"]
 categories = ["data-structures", "filesystem"]
