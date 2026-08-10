@@ -2,7 +2,7 @@
 
 A copy-on-write abstraction for binary data backed by memory or files.
 
-[![CI](https://github.com/BinFlip/cowfile/actions/workflows/ci.yml/badge.svg)](https://github.com/BinFlip/cowfile/actions/workflows/ci.yml)
+[![CI](https://github.com/ATRAPSLLC/cowfile/actions/workflows/ci.yml/badge.svg)](https://github.com/ATRAPSLLC/cowfile/actions/workflows/ci.yml)
 [![Crates.io](https://img.shields.io/crates/v/cowfile.svg)](https://crates.io/crates/cowfile)
 [![Documentation](https://docs.rs/cowfile/badge.svg)](https://docs.rs/cowfile)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -240,4 +240,5 @@ Note that `commit()` and `discard()` require `&mut self`, so they need exclusive
 
 ## License
 
-Licensed under the Apache License, Version 2.0. See [LICENSE-APACHE](LICENSE-APACHE) for details.
+Copyright 2026 ATRAPS LLC. Licensed under the Apache License, Version 2.0.
+See [LICENSE](LICENSE) and [NOTICE](NOTICE) for details.
