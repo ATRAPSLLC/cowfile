@@ -37,7 +37,7 @@ use cowfile::CowFile;
 // Create from owned bytes
 let pf = CowFile::from_vec(vec![0u8; 1024]);
 
-// Writes go to the pending log (uses &self — interior mutability)
+// Writes go to the pending log (uses &self - interior mutability)
 pf.write(0x10, &[0xFF, 0xFE]).unwrap();
 pf.write(0x20, &[0xAA, 0xBB, 0xCC]).unwrap();
 
@@ -152,7 +152,7 @@ use cowfile::CowFile;
 let pf = CowFile::open("binary.exe").unwrap();
 pf.write(0, &[0xFF]).unwrap();
 
-// Fork re-opens the file — shares read pages via OS-level CoW
+// Fork re-opens the file - shares read pages via OS-level CoW
 let forked = pf.fork().unwrap();
 assert!(!forked.has_pending()); // Fork starts clean
 ```

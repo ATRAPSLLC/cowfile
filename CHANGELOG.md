@@ -5,6 +5,25 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.5]
+
+### Changed
+
+- Bumped `thiserror` from `2.0.19` to `2.0.20` in `Cargo.toml`, matching the version
+  already locked.
+- Refreshed the lockfile (`cargo update`): `bitflags` 2.13.2, `cfg-if` 1.0.5, `rustix`
+  1.1.5, `syn` 3.0.6, `unicode-ident` 1.0.26. `memmap2` (0.9.11) and `tempfile`
+  (3.27.0) were already current.
+- Replaced em-dashes in documentation, comments and the README with plain hyphens.
+  No functional change.
+
+### Fixed
+
+- Rustdoc warnings: redundant explicit link targets in the `cowfile`, `cursor` and
+  `traits` module docs, and an ambiguous `Error` link (enum vs. derive macro) in the
+  `error` module. `cargo doc` now builds cleanly under `-D warnings`, including with
+  `--document-private-items`.
+
 ## [0.2.4]
 
 ### Changed
@@ -36,8 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `CowFile::fork` — create an independent copy-on-write clone of an existing `CowFile`.
-- `CowFile::source_path` — return the backing file path (`Option<&Path>`) when the
+- `CowFile::fork` - create an independent copy-on-write clone of an existing `CowFile`.
+- `CowFile::source_path` - return the backing file path (`Option<&Path>`) when the
   `CowFile` is file-backed.
 
 ## [0.2.1]

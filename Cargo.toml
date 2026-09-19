@@ -1,6 +1,6 @@
 [package]
 name = "cowfile"
-version = "0.2.4"
+version = "0.2.5"
 edition = "2021"
 description = "A copy-on-write abstraction for binary data backed by memory or files"
 license = "Apache-2.0"
@@ -16,7 +16,7 @@ all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
-thiserror = "2.0.19"
+thiserror = "2.0.20"
 memmap2 = "0.9.11"
 
 [dev-dependencies]

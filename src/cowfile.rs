@@ -9,7 +9,7 @@
 //!
 //! `CowFile` is [`Send`] and [`Sync`]. The committed buffer can be read
 //! concurrently via [`data`](CowFile::data) from multiple threads. Writes
-//! to the pending log are serialised by an internal [`RwLock`](std::sync::RwLock).
+//! to the pending log are serialised by an internal [`RwLock`].
 
 use std::{
     fmt,
@@ -89,7 +89,7 @@ struct PendingWrite {
 /// For memory-mapped files, the buffer is created with
 /// [`map_copy`](memmap2::MmapOptions::map_copy), which uses `MAP_PRIVATE` on
 /// Unix and `PAGE_WRITECOPY` on Windows. Only pages touched by
-/// [`commit`](CowFile::commit) are copied into anonymous memory — the rest
+/// [`commit`](CowFile::commit) are copied into anonymous memory - the rest
 /// of the file remains demand-paged from disk.
 ///
 /// # Examples
@@ -114,7 +114,7 @@ struct PendingWrite {
 /// assert_eq!(pf.data()[10], 0xFF);
 /// ```
 pub struct CowFile {
-    /// Committed buffer — only mutated by `commit()`.
+    /// Committed buffer - only mutated by `commit()`.
     buffer: Inner,
     /// Pending writes, accumulated via interior mutability.
     pending: RwLock<Vec<PendingWrite>>,
@@ -153,7 +153,7 @@ impl CowFile {
     /// Creates a `CowFile` from an owned byte vector.
     ///
     /// The provided bytes become the committed buffer. No copies are made
-    /// during construction — the vector is moved into the `CowFile`.
+    /// during construction - the vector is moved into the `CowFile`.
     ///
     /// # Examples
     ///
@@ -177,7 +177,7 @@ impl CowFile {
     /// The file is mapped with copy-on-write semantics (`MAP_PRIVATE` on Unix,
     /// `PAGE_WRITECOPY` on Windows). The original file is never modified.
     /// Only pages touched by [`commit`](CowFile::commit) are copied into
-    /// anonymous memory — the rest of the file remains demand-paged from disk.
+    /// anonymous memory - the rest of the file remains demand-paged from disk.
     ///
     /// # Errors
     ///
@@ -356,7 +356,7 @@ impl CowFile {
                 .pending
                 .read()
                 .map_err(|e| Error::LockPoisoned(e.to_string()))?;
-            // Scan in reverse — last write wins.
+            // Scan in reverse - last write wins.
             for pw in pending.iter().rev() {
                 let pw_end = pw.offset + pw.data.len();
                 if offset >= pw.offset && offset < pw_end {
@@ -693,11 +693,11 @@ impl CowFile {
     /// Creates an independent copy of this `CowFile`.
     ///
     /// For mmap-backed files with a known source path, re-opens the original
-    /// file — a new `MAP_PRIVATE` mmap that shares physical read pages with
+    /// file - a new `MAP_PRIVATE` mmap that shares physical read pages with
     /// the parent via OS-level copy-on-write. For vec-backed files or those
     /// without a source path, clones the data.
     ///
-    /// Pending writes are **not** carried over — the fork starts clean.
+    /// Pending writes are **not** carried over - the fork starts clean.
     ///
     /// # Errors
     ///
@@ -712,7 +712,7 @@ impl CowFile {
     /// pf.write(0, &[0xFF]).unwrap();
     ///
     /// let forked = pf.fork().unwrap();
-    /// // Fork starts clean — no pending writes
+    /// // Fork starts clean - no pending writes
     /// assert!(!forked.has_pending());
     /// // But reads the same committed data
     /// assert_eq!(forked.data()[0], pf.data()[0]);
@@ -889,7 +889,7 @@ impl CowFile {
 
 /// Applies pending writes that overlap `[read_offset..read_offset+read_len)` to `buf`.
 ///
-/// Writes are applied in order — later writes overwrite earlier ones.
+/// Writes are applied in order - later writes overwrite earlier ones.
 fn apply_pending(buf: &mut [u8], read_offset: usize, read_len: usize, pending: &[PendingWrite]) {
     let read_end = read_offset + read_len;
     for pw in pending {

@@ -1,7 +1,7 @@
 //! Error types for the cowfile crate.
 //!
 //! All fallible operations in this crate return [`Result<T>`], which is an alias
-//! for `std::result::Result<T, Error>`. The [`Error`] enum covers I/O failures
+//! for `std::result::Result<T, Error>`. The [`Error`](enum@Error) enum covers I/O failures
 //! and out-of-bounds access.
 
 use thiserror::Error;
