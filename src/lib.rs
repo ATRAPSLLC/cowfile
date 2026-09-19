@@ -69,7 +69,7 @@
 //! ## Memory-Mapped Files
 //!
 //! For large binaries, use [`CowFile::open`] to create a copy-on-write memory
-//! map. The OS handles paging — only accessed regions are loaded into physical
+//! map. The OS handles paging - only accessed regions are loaded into physical
 //! memory, and only pages modified by [`commit`](CowFile::commit) are copied:
 //!
 //! ```no_run

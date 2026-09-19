@@ -2,7 +2,7 @@
 //!
 //! This module defines a trait for numeric types that can be read from and
 //! written to a [`CowFile`](crate::CowFile) at a given byte offset. The trait
-//! is sealed — external crates cannot implement it for their own types. For
+//! is sealed - external crates cannot implement it for their own types. For
 //! user-defined structs, use [`ReadFrom`](crate::ReadFrom) and
 //! [`WriteTo`](crate::WriteTo) instead.
 
@@ -11,7 +11,7 @@
 /// Implemented for: [`u8`], [`i8`], [`u16`], [`i16`], [`u32`], [`i32`],
 /// [`u64`], [`i64`], [`f32`], [`f64`].
 ///
-/// This trait is sealed — it cannot be implemented outside of this crate.
+/// This trait is sealed - it cannot be implemented outside of this crate.
 /// For user-defined types, implement [`ReadFrom`](crate::ReadFrom) and
 /// [`WriteTo`](crate::WriteTo) instead.
 ///

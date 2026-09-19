@@ -1,8 +1,8 @@
-//! Cursor-based [`std::io`] compatibility for [`CowFile`](crate::CowFile).
+//! Cursor-based [`std::io`] compatibility for [`CowFile`].
 //!
 //! [`CowFileCursor`] wraps a reference to a `CowFile` and maintains an internal
-//! byte position, implementing [`Read`](std::io::Read), [`Write`](std::io::Write),
-//! and [`Seek`](std::io::Seek). This allows a `CowFile` to be used with any API
+//! byte position, implementing [`Read`], [`Write`],
+//! and [`Seek`]. This allows a `CowFile` to be used with any API
 //! that expects standard I/O traits.
 //!
 //! # Examples

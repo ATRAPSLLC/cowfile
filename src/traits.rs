@@ -1,7 +1,7 @@
 //! Extensible traits for reading and writing user-defined types.
 //!
 //! These traits allow external crates to define how their structs are
-//! serialized to and deserialized from a [`CowFile`](crate::CowFile).
+//! serialized to and deserialized from a [`CowFile`].
 //! For primitive numeric types, use the built-in
 //! [`read_le`](crate::CowFile::read_le) / [`write_le`](crate::CowFile::write_le) methods instead.
 //!

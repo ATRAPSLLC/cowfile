@@ -48,7 +48,7 @@ fn test_end_to_end_vec() {
     // data() shows committed state (pass 1 + pass 2 committed, pass 3 pending).
     assert_eq!(&pf.data()[0..4], &[0x4D, 0x5A, 0x90, 0x00]);
     assert_eq!(&pf.data()[512..516], &[0xDE, 0xAD, 0xBE, 0xEF]);
-    // Pass 3 not yet committed — data() shows original bytes here.
+    // Pass 3 not yet committed - data() shows original bytes here.
     assert_eq!(&pf.data()[1020..1024], &data[1020..1024]);
 }
 
@@ -103,7 +103,7 @@ fn test_mmap_cow_does_not_modify_original() {
 fn test_data_while_writing() {
     let pf = CowFile::from_vec(vec![0u8; 100]);
 
-    // Hold a data() reference while writing — both are &self borrows.
+    // Hold a data() reference while writing - both are &self borrows.
     let view = pf.data();
     pf.write(10, &[0xFF]).unwrap();
 
@@ -467,7 +467,7 @@ fn test_error_into_io_error() {
     let pf = CowFile::from_vec(vec![0u8; 4]);
     let mut cursor = pf.cursor();
 
-    // Seek past the end and try to write — should get an io::Error.
+    // Seek past the end and try to write - should get an io::Error.
     cursor.seek(SeekFrom::Start(3)).unwrap();
     let result = cursor.write_all(&[0xFF; 4]);
     assert!(result.is_err());
@@ -484,10 +484,10 @@ fn test_three_layer_composition() {
     pf.write(8, &[0xAA; 8]).unwrap();
     pf.commit().unwrap();
 
-    // Pending: overwrite [12..20) with 0xBB — overlaps committed at [12..16).
+    // Pending: overwrite [12..20) with 0xBB - overlaps committed at [12..16).
     pf.write(12, &[0xBB; 8]).unwrap();
 
-    // Read [4..24) — spans all three layers.
+    // Read [4..24) - spans all three layers.
     let data = pf.read(4, 20).unwrap();
 
     // [4..8) = base (4,5,6,7)
@@ -558,7 +558,7 @@ fn test_single_byte_operations_overlap() {
 fn test_dirty_flag_optimization() {
     let mut pf = CowFile::from_vec(vec![1, 2, 3, 4, 5]);
 
-    // No pending writes — dirty flag is false.
+    // No pending writes - dirty flag is false.
     assert!(!pf.has_pending());
 
     // read() should return committed data directly.
@@ -581,12 +581,12 @@ fn test_dirty_flag_optimization() {
 
 #[test]
 fn test_into_vec() {
-    // Unmodified Vec — zero-copy move.
+    // Unmodified Vec - zero-copy move.
     let pf = CowFile::from_vec(vec![1, 2, 3]);
     let data = pf.into_vec().unwrap();
     assert_eq!(data, vec![1, 2, 3]);
 
-    // Modified Vec — materializes with pending applied.
+    // Modified Vec - materializes with pending applied.
     let pf = CowFile::from_vec(vec![0u8; 10]);
     pf.write(0, &[0xFF]).unwrap();
     pf.write(9, &[0xEE]).unwrap();
@@ -595,7 +595,7 @@ fn test_into_vec() {
     assert_eq!(data[9], 0xEE);
     assert_eq!(data[5], 0x00);
 
-    // Mmap — copies to Vec.
+    // Mmap - copies to Vec.
     let mut tmpfile = tempfile::NamedTempFile::new().unwrap();
     tmpfile.write_all(&[0xDE, 0xAD, 0xBE, 0xEF]).unwrap();
     tmpfile.flush().unwrap();
