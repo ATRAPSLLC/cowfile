@@ -16,8 +16,8 @@ use std::{
     io::Write,
     path::{Path, PathBuf},
     sync::{
-        atomic::{AtomicBool, Ordering},
         RwLock,
+        atomic::{AtomicBool, Ordering},
     },
 };
 
@@ -909,8 +909,8 @@ fn apply_pending(buf: &mut [u8], read_offset: usize, read_len: usize, pending: &
 #[cfg(test)]
 mod tests {
     use crate::{
-        traits::{ReadFrom, WriteTo},
         CowFile,
+        traits::{ReadFrom, WriteTo},
     };
 
     #[test]
