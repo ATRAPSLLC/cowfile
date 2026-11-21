@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.6]
+
+### Changed
+
+- Moved to the Rust 2024 edition and declared a minimum supported Rust version of
+  1.85 (`rust-version` in `Cargo.toml`), the lowest release that supports the 2024
+  edition and also the floor of the current dependency tree (`getrandom` 0.4, via
+  `tempfile`). `cargo fix --edition` required no source changes; rustfmt's 2024
+  style edition reordered two `use` lists.
+- Bumped `thiserror` from `2.0.20` to `2.0.21` and `memmap2` from `0.9.11` to
+  `0.9.12` in `Cargo.toml`, matching the versions now locked.
+- Refreshed the lockfile (`cargo update`): `errno` 0.3.15, `libc` 0.2.191, `rustix`
+  1.1.6, `syn` 3.0.10, `unicode-ident` 1.0.27. `tempfile` (3.27.0) was already
+  current.
+- CI: `actions/checkout` from v4 to v7 in the CI and release workflows, and a new
+  MSRV job that builds and tests on Rust 1.85.
+
 ## [0.2.5]
 
 ### Changed
@@ -77,6 +94,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release: a copy-on-write abstraction for binary data backed by memory or files.
 
+[0.2.6]: https://github.com/ATRAPSLLC/cowfile/compare/v0.2.5...v0.2.6
+[0.2.5]: https://github.com/ATRAPSLLC/cowfile/compare/v0.2.4...v0.2.5
+[0.2.4]: https://github.com/ATRAPSLLC/cowfile/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/ATRAPSLLC/cowfile/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/ATRAPSLLC/cowfile/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/ATRAPSLLC/cowfile/compare/v0.2.0...v0.2.1

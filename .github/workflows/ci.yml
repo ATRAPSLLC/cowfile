@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
@@ -27,3 +27,15 @@ jobs:
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test --verbose
       - run: cargo doc --no-deps
+
+  # Hold the `rust-version` declared in Cargo.toml to the truth: build and test
+  # on exactly that toolchain, so a dependency bump that raises the floor fails
+  # here instead of in a downstream crate.
+  msrv:
+    name: MSRV (1.85)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@1.85
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo test --verbose
